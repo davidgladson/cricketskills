@@ -1,49 +1,69 @@
-# app.py
-import streamlit as st
+from flask import Flask, render_template
+from datetime import datetime
 
-def main():
-    # Set page config
-    st.set_page_config(
-        page_title="Cricket Skills",
-        page_icon="🏏",
-        layout="wide"
-    )
+app = Flask(__name__)
 
-    # Header
-    st.title("Welcome to Cricket Skills")
-    st.subheader("Master the art of cricket with expert guidance")
+# Workshop data with consistent icon names
+workshops = [
+    {
+        "title": "3 Day Cricket Content Workshop by DugOut",
+        "icon": "users",  # Feather icon name
+        "duration": "3 Days",
+        "category": "Training",
+        "spots": "Limited spots available",
+        "is_active": True,
+        "schedule": [
+            "Day 1: Thursday 27th Feb 7 PM - 8 PM, Intro Session",
+            "Day 2: Friday 28th Feb, Recorded Sessions & Short Contest Announcement",
+            "Day 3: Saturday 1st Mar, 11 AM - 12:30 PM, Live Webinar"
+        ],
+        "whatsapp_link": "https://chat.whatsapp.com/BXxnlunDBoM3J8CHFVbzN4"
+    },
+    {
+        "title": "3 Day Fantasy Cricket Workshop by Fantasy Experts",
+        "icon": "award",  # Changed from trophy to award (available in Feather)
+        "duration": "3 Days",
+        "category": "Strategy",
+        "spots": "Batch starting soon",
+        "is_active": True,
+        "features": [
+            "Advanced fantasy strategies",
+            "Live analysis sessions",
+            "Exclusive team selections",
+            "Tournament-specific insights"
+        ],
+        "whatsapp_link": "https://chat.whatsapp.com/HSg8Vya3kn226xHlJ1BoAK"
+    },
+    {
+        "title": "BCCI Cricket Umpiring Certification",
+        "icon": "book",  # Changed from book-open to book
+        "duration": "90 mins",
+        "category": "Certification",
+        "spots": "Coming Soon",
+        "is_active": False
+    },
+    {
+        "title": "Cricket Commentary Workshop",
+        "icon": "mic",  # This one was correct
+        "duration": "90 mins",
+        "category": "Media",
+        "spots": "Coming Soon",
+        "is_active": False
+    },
+    {
+        "title": "Sports Photography Excellence",
+        "icon": "camera",  # This one was correct
+        "duration": "90 mins",
+        "category": "Media",
+        "spots": "Coming Soon",
+        "is_active": False
+    }
+]
 
-    # Main content
-    col1, col2 = st.columns(2)
+@app.route('/')
+def home():
+    current_year = datetime.now().year
+    return render_template('index.html', workshops=workshops, current_year=current_year)
 
-    with col1:
-        st.header("What We Offer")
-        st.write("""
-        - Professional cricket coaching
-        - Video analysis of your technique
-        - Personalized training programs
-        - Mental conditioning sessions
-        """)
-
-    with col2:
-        st.header("Why Choose Us")
-        st.write("""
-        - Experienced coaches
-        - State-of-the-art facilities
-        - Comprehensive skill development
-        - Progress tracking
-        """)
-
-    # Call to Action
-    st.markdown("---")
-    st.header("Ready to elevate your game?")
-    
-    contact_form = st.form("contact_form")
-    with contact_form:
-        name = st.text_input("Name")
-        email = st.text_input("Email")
-        message = st.text_area("Message")
-        submit = st.form_submit_button("Send Message")
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)

@@ -1,0 +1,215 @@
+/* Base Styles */
+:root {
+    --primary-blue: #1e40af;
+    --primary-light: #3b82f6;
+    --primary-dark: #1e3a8a;
+    --neutral-50: #f8fafc;
+    --neutral-100: #f1f5f9;
+    --neutral-200: #e2e8f0;
+    --neutral-700: #334155;
+    --neutral-800: #1e293b;
+    --neutral-900: #0f172a;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    color: var(--neutral-800);
+    background-color: var(--neutral-50);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--neutral-900);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+    background-image: linear-gradient(rgba(30, 64, 175, 0.95), rgba(30, 64, 175, 0.95)),
+                      url('/static/images/cricket-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Workshop Cards */
+.workshops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.workshop-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.workshop-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+/* Icon Containers */
+.icon-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--neutral-100);
+    padding: 12px;
+}
+
+.workshop-icon {
+    width: 24px !important;
+    height: 24px !important;
+    stroke-width: 1.5;
+    color: var(--primary-blue);
+}
+
+.status-icon {
+    width: 16px !important;
+    height: 16px !important;
+    stroke-width: 2;
+}
+
+/* Ensure all Feather icons are visible */
+.feather {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Category Badges */
+.category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: var(--neutral-100);
+    color: var(--primary-blue);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-disabled {
+    background-color: var(--neutral-200);
+    color: var(--neutral-700);
+    cursor: not-allowed;
+}
+
+/* Schedule Section */
+.schedule-container {
+    background-color: #eef2ff;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Features List */
+.features-list {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--neutral-900);
+    color: white;
+    padding: 4rem 1rem;
+    margin-top: 4rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-size: 1.125rem;
+    font-weight: 600;

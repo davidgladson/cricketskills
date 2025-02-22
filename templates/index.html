@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Skills Academy</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231e40af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4'/></svg>">
+    <!-- Social Meta Tags -->
+    <meta property="og:title" content="Cricket Skills Academy">
+    <meta property="og:description" content="Transform your cricket journey with expert-led workshops and professional certification programs">
+    <meta property="og:image" content="https://your-domain.com/cricket-skills-og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Feather Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        /* Custom styles */
+        .workshop-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .workshop-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-blue-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                    Cricket Skills Academy
+                </h1>
+                <p class="mt-6 text-xl text-blue-100 max-w-2xl mx-auto">
+                    Transform your cricket journey with expert-led workshops and professional certification programs
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-3xl font-semibold text-gray-900 mb-8">Featured Programs</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for workshop in workshops %}
+            <div class="workshop-card bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="icon-container bg-blue-100">
+                            <i data-feather="{{ workshop.icon }}" class="workshop-icon" style="width: 24px; height: 24px; stroke-width: 1.5;"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-blue-600">{{ workshop.category }}</p>
+                            <p class="text-sm text-gray-500 flex items-center gap-1">
+                                <i data-feather="clock" class="status-icon"></i>
+                                {{ workshop.duration }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ workshop.title }}</h3>
+                    
+                    <div class="mb-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            {{ workshop.spots }}
+                        </span>
+                    </div>
+
+                    {% if workshop.schedule %}
+                    <div class="mb-4 bg-blue-50 text-blue-900 p-4 rounded-md">
+                        <div class="flex items-center mb-2">
+                            <i data-feather="calendar" class="w-4 h-4 mr-2"></i>
+                            <span class="font-medium">Schedule</span>
+                        </div>
+                        {% for item in workshop.schedule %}
+                        <p class="text-sm mb-1">{{ item }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if workshop.features %}
+                    <ul class="mb-4 space-y-2">
+                        {% for feature in workshop.features %}
+                        <li class="flex items-center text-sm text-gray-600">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 text-blue-600"></i>
+                            {{ feature }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% if workshop.is_active %}
+                    <a href="{{ workshop.whatsapp_link }}" target="_blank" 
+                       class="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                        Enroll Now
+                    </a>
+                    {% else %}
+                    <button disabled 
+                            class="w-full bg-gray-100 text-gray-500 py-2 px-4 rounded-lg cursor-not-allowed">
+                        Coming Soon
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16">
+        <div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Programs</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i data-feather="mail" class="w-4 h-4"></i>
+                            <a href="mailto:cricketskills.in@gmail.com" 
+                               class="text-gray-300 hover:text-white transition-colors">
+                                cricketskills.in@gmail.com
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-feather="map-pin" class="w-4 h-4"></i>
+                            <span class="text-gray-300">Indiranagar, Bengaluru</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>© {{ current_year }} Cricket Skills Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Feather Icons -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace({
+                'stroke-width': 1.5,
+                'width': 24,
+                'height': 24
+            });
+        });
+    </script>
+
+    <!-- Add custom icon styles -->
+    <style>
+        .feather {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        
+        .icon-container .feather {
+            color: #1e40af; /* Primary blue color */
+        }
+        
+        .status-icon {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</body>
+</html>

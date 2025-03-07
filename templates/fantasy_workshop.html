@@ -1,0 +1,733 @@
+{% extends 'base.html' %}
+
+{% block title %}Fantasy Cricket Workshop - Cricket Skills Academy{% endblock %}
+
+{% block extra_styles %}
+.scroll-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+    position: relative;
+}
+
+.bg-gradient-fantasy {
+    background: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+}
+
+.stat-card {
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+}
+
+.register-button {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.register-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card {
+    border-left: 4px solid #2563eb;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateX(5px);
+    border-left: 4px solid #1e40af;
+}
+
+/* Animated arrow for scrolling */
+.scroll-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+/* Timer styles */
+.timer-container {
+    background: rgba(0,0,0,0.8);
+    border-radius: 8px;
+    padding: 1rem;
+    display: inline-flex;
+    margin-top: 1rem;
+}
+
+.timer-block {
+    text-align: center;
+    margin: 0 0.5rem;
+}
+
+.timer-digit {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+}
+
+.timer-label {
+    font-size: 0.75rem;
+    color: #cbd5e1;
+    text-transform: uppercase;
+}
+
+/* Testimonial styles */
+.testimonial-card {
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Instructor section styles */
+.instructor-image {
+    border: 4px solid #2563eb;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background-color: #dbeafe;
+    color: #1e40af;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="scroll-section bg-gradient-fantasy text-white">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <span class="inline-block px-3 py-1 text-sm font-semibold bg-yellow-500 text-blue-900 rounded-full mb-6">Limited Time Offer</span>
+            <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl mb-6">
+                3 Day Fantasy Cricket Workshop
+            </h1>
+            <p class="mt-4 text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+                Learn winning strategies from Fantasy Experts and dominate your leagues during IPL 2025
+            </p>
+            
+            <div class="timer-container">
+                <div class="timer-block">
+                    <div class="timer-digit" id="days">00</div>
+                    <div class="timer-label">Days</div>
+                </div>
+                <div class="timer-block">
+                    <div class="timer-digit" id="hours">00</div>
+                    <div class="timer-label">Hours</div>
+                </div>
+                <div class="timer-block">
+                    <div class="timer-digit" id="minutes">00</div>
+                    <div class="timer-label">Minutes</div>
+                </div>
+                <div class="timer-block">
+                    <div class="timer-digit" id="seconds">00</div>
+                    <div class="timer-label">Seconds</div>
+                </div>
+            </div>
+            
+            <div class="mt-10">
+                <a href="https://rzp.io/rzp/fantasy-cricket-workshop" 
+                   class="register-button inline-block bg-yellow-500 text-blue-900 font-bold text-xl px-8 py-4 rounded-lg shadow-lg hover:bg-yellow-400 transition-all duration-300">
+                    Register Now - Just ₹49
+                </a>
+                <p class="mt-3 text-sm text-blue-200">
+                    <i data-feather="users" class="inline h-4 w-4"></i> 
+                    <span class="align-middle">Only a few spots remaining!</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-arrow">
+        <i data-feather="chevrons-down" class="h-8 w-8 text-white"></i>
+    </div>
+</section>
+
+<!-- Meet Your Instructor Section -->
+<section class="scroll-section bg-white">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Meet Your Instructor</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Learn from one of India's most experienced fantasy cricket experts
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative order-2 lg:order-1">
+                <img src="/static/images/rakesh.png" alt="Rakesh - Fantasy Cricket Expert" 
+                     class="rounded-lg shadow-xl z-10 relative instructor-image" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e40af/FFFFFF?text=Rakesh';">
+            </div>
+            
+            <div class="order-1 lg:order-2">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Rakesh</h3>
+                    <p class="text-blue-600 font-medium">Fantasy Cricket Expert & Strategist</p>
+                    <div class="mt-3 flex flex-wrap">
+                        <span class="achievement-badge">
+                            <i data-feather="award" class="h-4 w-4 mr-1"></i> 10+ Years Experience
+                        </span>
+                        <span class="achievement-badge">
+                            <i data-feather="tv" class="h-4 w-4 mr-1"></i> Featured on News
+                        </span>
+                        <span class="achievement-badge">
+                            <i data-feather="trophy" class="h-4 w-4 mr-1"></i> Multiple GL Wins
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="space-y-4 mb-8">
+                    <p class="text-gray-700">
+                        With over a decade of experience in fantasy cricket, Rakesh has established himself as one of the most consistent and strategic players in the fantasy cricket community. His analytical approach and deep understanding of the game have helped him achieve multiple grand league victories across various fantasy platforms.
+                    </p>
+                    
+                    <p class="text-gray-700">
+                        As a regular fantasy cricket analyst on local news channels, Rakesh has shared his insights with thousands of cricket enthusiasts. His expertise isn't just theoretical - he's put his strategies to the test and proven their effectiveness through consistent wins and high rankings.
+                    </p>
+                    
+                    <p class="text-gray-700">
+                        Through this workshop, Rakesh is excited to share his battle-tested strategies, selection criteria, and insider tips that have helped him maintain his position among the top 1% of fantasy players nationwide.
+                    </p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600 mb-8">
+                    <p class="text-gray-700 italic">
+                        "My goal is to help you avoid the years of trial and error that most fantasy players go through. I've developed a system that consistently produces results, and I'm excited to share these strategies with you in our workshop."
+                    </p>
+                    <p class="mt-2 font-medium text-gray-900">- Rakesh</p>
+                </div>
+                
+                <a href="https://rzp.io/rzp/fantasy-cricket-workshop" 
+                   class="register-button inline-block bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300">
+                    Learn from Rakesh - Register Now
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-arrow">
+        <i data-feather="chevrons-down" class="h-8 w-8 text-blue-600"></i>
+    </div>
+</section>
+
+<!-- Workshop Overview -->
+<section class="scroll-section bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Master Fantasy Cricket <span class="text-blue-600">Like a Pro</span></h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    Join our exclusive 3-Day Fantasy Cricket Workshop and learn directly from experts who have consistently ranked in the top 1% of players nationwide.
+                </p>
+                <p class="text-lg text-gray-700 mb-8">
+                    This comprehensive 90-minute session covers everything you need to know to transform your fantasy cricket game and start winning consistently.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <div class="stat-card bg-blue-50 p-6 rounded-lg">
+                        <div class="text-blue-600 text-3xl font-bold">90 min</div>
+                        <div class="text-gray-700">Intensive Training</div>
+                    </div>
+                    <div class="stat-card bg-blue-50 p-6 rounded-lg">
+                        <div class="text-blue-600 text-3xl font-bold">₹49</div>
+                        <div class="text-gray-700">One-time Investment</div>
+                    </div>
+                    <div class="stat-card bg-blue-50 p-6 rounded-lg">
+                        <div class="text-blue-600 text-3xl font-bold">3 Days</div>
+                        <div class="text-gray-700">Structured Learning</div>
+                    </div>
+                    <div class="stat-card bg-blue-50 p-6 rounded-lg">
+                        <div class="text-blue-600 text-3xl font-bold">100%</div>
+                        <div class="text-gray-700">Expert Guidance</div>
+                    </div>
+                </div>
+                
+                <a href="https://rzp.io/rzp/fantasy-cricket-workshop" 
+                   class="register-button inline-block bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300">
+                    Secure Your Spot Now
+                </a>
+            </div>
+            
+            <div class="relative">
+                <img src="/static/images/fantasy-cricket-workshop.jpg" alt="Fantasy Cricket Expert" 
+                     class="rounded-lg shadow-xl z-10 relative" 
+                     onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80';">
+                <div class="absolute inset-0 bg-blue-600 rounded-lg transform translate-x-4 translate-y-4 -z-10"></div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-arrow">
+        <i data-feather="chevrons-down" class="h-8 w-8 text-blue-600"></i>
+    </div>
+</section>
+
+<!-- What You'll Learn -->
+<section class="scroll-section bg-white">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">What You'll Learn</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Our curriculum is designed to address the most critical aspects of fantasy cricket success
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i data-feather="alert-triangle" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Common Mistakes to Avoid</h3>
+                        <p class="text-gray-600">
+                            Identify and eliminate critical errors that most fantasy players make, giving you an immediate edge over the competition.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i data-feather="award" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Winning Fantasy Formula</h3>
+                        <p class="text-gray-600">
+                            Learn the proven mathematical approaches and selection criteria used by top players to consistently create winning teams.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i data-feather="tool" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Expert Tools & Resources</h3>
+                        <p class="text-gray-600">
+                            Discover the essential tools and information sources used by professional fantasy players to gain a data-driven advantage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i data-feather="target" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Winning Strategies</h3>
+                        <p class="text-gray-600">
+                            Master different approaches for small leagues vs grand leagues, and learn when to apply each strategy for maximum results.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i data-feather="layers" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Team Creation Process</h3>
+                        <p class="text-gray-600">
+                            Get an in-depth breakdown of how to build your team step-by-step, from captain selection to balancing your lineup.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feature-card bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i data-feather="map" class="h-6 w-6 text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Expert Roadmap</h3>
+                        <p class="text-gray-600">
+                            Follow our structured path to transform from a casual player to a fantasy expert over the course of the upcoming IPL season.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="https://rzp.io/rzp/fantasy-cricket-workshop" 
+               class="register-button inline-block bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300">
+                Join the Workshop
+            </a>
+        </div>
+    </div>
+    <div class="scroll-arrow">
+        <i data-feather="chevrons-down" class="h-8 w-8 text-blue-600"></i>
+    </div>
+</section>
+
+<!-- Workshop Structure -->
+<section class="scroll-section bg-blue-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">3-Day Workshop Structure</h2>
+            <p class="text-lg text-blue-200 max-w-3xl mx-auto">
+                A carefully designed program to build your fantasy cricket expertise
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="bg-yellow-500 text-blue-900 font-bold rounded-full w-10 h-10 flex items-center justify-center">1</span>
+                    <span class="text-blue-200">Day One</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Foundation & Fundamentals</h3>
+                <ul class="space-y-3 text-blue-100">
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Welcome & introduction</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Fantasy cricket basics overview</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Common mistakes to avoid</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Essential tools introduction</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="bg-yellow-500 text-blue-900 font-bold rounded-full w-10 h-10 flex items-center justify-center">2</span>
+                    <span class="text-blue-200">Day Two</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Strategy Development</h3>
+                <ul class="space-y-3 text-blue-100">
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Winning fantasy formula breakdown</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Player selection criteria</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Small league vs Grand league approaches</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Captain & vice-captain selection</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform transition-all duration-300 hover:scale-105">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="bg-yellow-500 text-blue-900 font-bold rounded-full w-10 h-10 flex items-center justify-center">3</span>
+                    <span class="text-blue-200">Day Three</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Expert Mastery</h3>
+                <ul class="space-y-3 text-blue-100">
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Live Q&A session with fantasy experts</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Case studies of successful teams</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>IPL 2025 specific strategies</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-400 mr-2 mt-0.5"></i>
+                        <span>Expert roadmap & next steps</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <p class="text-xl text-blue-200 mb-6">90 minutes of concentrated expertise that will transform your fantasy cricket game</p>
+            <a href="https://rzp.io/rzp/fantasy-cricket-workshop" 
+               class="register-button inline-block bg-yellow-500 text-blue-900 font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-400 transition-all duration-300">
+                Reserve Your Spot - ₹49 Only
+            </a>
+        </div>
+    </div>
+    <div class="scroll-arrow">
+        <i data-feather="chevrons-down" class="h-8 w-8 text-white"></i>
+    </div>
+</section>
+
+<!-- IPL 2025 Special -->
+<section class="scroll-section bg-white">
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="inline-block px-3 py-1 text-sm font-semibold bg-blue-600 text-white rounded-full mb-4">EXCLUSIVE</span>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Special IPL 2025 Bonus</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Workshop participants get exclusive access to our IPL 2025 resources
+            </p>
+        </div>
+        
+        <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-500 transform skew-y-3 rounded-3xl -z-10"></div>
+            <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="/static/images/ipl_cover.png" alt="IPL 2025" 
+                             class="rounded-lg shadow-lg" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1624959326514-5fe7df5ea024?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80';">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Get Ready for IPL 2025</h3>
+                        <p class="text-gray-700 mb-6">
+                            We have something special planned for IPL 2025! Workshop participants will receive:
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                                    <i data-feather="star" class="h-4 w-4 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Pre-Tournament Analysis</h4>
+                                    <p class="text-gray-600">Exclusive team-by-team breakdown and player analysis</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                                    <i data-feather="users" class="h-4 w-4 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Private Community Access</h4>
+                                    <p class="text-gray-600">Join our exclusive WhatsApp group for daily insights</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                                    <i data-feather="file-text" class="h-4 w-4 text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Match-by-Match Guides</h4>
+                                    <p class="text-gray-600">Receive strategic tips before key matches</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="https://rzp.io/rzp/fantasy-cricket-workshop
+
+                        " 
+                        class="register-button inline-block bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300">
+                         Secure Your IPL Advantage
+                     </a>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <div class="scroll-arrow">
+     <i data-feather="chevrons-down" class="h-8 w-8 text-blue-600"></i>
+ </div>
+</section>
+
+<!-- Testimonials -->
+<section class="scroll-section bg-gray-50">
+ <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+         <h2 class="text-3xl font-bold text-gray-900 mb-4">Success Stories</h2>
+         <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+             See what previous workshop participants have achieved
+         </p>
+     </div>
+     
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+         <div class="testimonial-card bg-white rounded-lg shadow-md p-6">
+             <div class="flex items-center mb-4">
+                 <div class="text-yellow-500 flex">
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                 </div>
+             </div>
+             <p class="text-gray-700 mb-6">
+                 "The workshop completely changed how I approach fantasy cricket. Within two weeks of applying these strategies, I won my first grand league prize!"
+             </p>
+             <div class="flex items-center">
+                 <div class="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center mr-3">
+                     <span class="text-blue-600 font-semibold">RK</span>
+                 </div>
+                 <div>
+                     <h4 class="font-semibold text-gray-900">Rahul Kumar</h4>
+                     <p class="text-gray-500 text-sm">Mumbai</p>
+                 </div>
+             </div>
+         </div>
+         
+         <div class="testimonial-card bg-white rounded-lg shadow-md p-6">
+             <div class="flex items-center mb-4">
+                 <div class="text-yellow-500 flex">
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                 </div>
+             </div>
+             <p class="text-gray-700 mb-6">
+                 "Worth every rupee! The insights about captain selection alone helped me increase my win rate by over 30%. Can't wait to implement these strategies in IPL 2025."
+             </p>
+             <div class="flex items-center">
+                 <div class="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center mr-3">
+                     <span class="text-blue-600 font-semibold">AP</span>
+                 </div>
+                 <div>
+                     <h4 class="font-semibold text-gray-900">Ananya Patel</h4>
+                     <p class="text-gray-500 text-sm">Delhi</p>
+                 </div>
+             </div>
+         </div>
+         
+         <div class="testimonial-card bg-white rounded-lg shadow-md p-6">
+             <div class="flex items-center mb-4">
+                 <div class="text-yellow-500 flex">
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                     <i data-feather="star" class="h-5 w-5 fill-current"></i>
+                 </div>
+             </div>
+             <p class="text-gray-700 mb-6">
+                 "The expert insights gave me the confidence to create more strategic teams. I've seen consistent returns since implementing these techniques, and the workshop paid for itself in just one weekend!"
+             </p>
+             <div class="flex items-center">
+                 <div class="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center mr-3">
+                     <span class="text-blue-600 font-semibold">VS</span>
+                 </div>
+                 <div>
+                     <h4 class="font-semibold text-gray-900">Vijay Singh</h4>
+                     <p class="text-gray-500 text-sm">Bangalore</p>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <div class="scroll-arrow">
+     <i data-feather="chevrons-down" class="h-8 w-8 text-blue-600"></i>
+ </div>
+</section>
+
+<!-- Register Now CTA -->
+<section class="scroll-section bg-gradient-fantasy text-white">
+ <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+     <div class="text-center">
+         <h2 class="text-3xl font-bold mb-8">Ready to Transform Your Fantasy Cricket Game?</h2>
+         <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-10">
+             Join our expert-led workshop and start winning consistently in fantasy cricket
+         </p>
+         <a href="https://rzp.io/rzp/fantasy-cricket-workshop" 
+            class="register-button inline-block bg-yellow-500 text-blue-900 font-bold text-xl px-8 py-4 rounded-lg shadow-lg hover:bg-yellow-400 transition-all duration-300">
+             Register Now - Just ₹49
+         </a>
+         <p class="mt-4 text-sm text-blue-200">
+             <i data-feather="clock" class="inline h-4 w-4"></i> 
+             <span class="align-middle">Limited spots available - Secure yours today!</span>
+         </p>
+     </div>
+ </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Countdown Timer JavaScript -->
+<script>
+    // Set the countdown to the end of the current day
+    const countDownDate = new Date();
+    countDownDate.setHours(23, 59, 59, 999); // Set to end of current day
+    
+    // Update the countdown every 1 second
+    const countdownTimer = setInterval(function() {
+        // Get current date and time
+        const now = new Date().getTime();
+        
+        // Find the distance between now and the countdown date
+        const distance = countDownDate - now;
+        
+        // Time calculations for days, hours, minutes and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Display the results
+        document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+        
+        // If the countdown is finished, display message
+        if (distance < 0) {
+            // Reset to next day if countdown finished
+            countDownDate.setDate(countDownDate.getDate() + 1);
+        }
+    }, 1000);
+    
+    // Smooth scroll for arrow clicks
+    document.addEventListener('DOMContentLoaded', function() {
+        const scrollArrows = document.querySelectorAll('.scroll-arrow');
+        
+        scrollArrows.forEach(arrow => {
+            arrow.addEventListener('click', function() {
+                const currentSection = this.closest('.scroll-section');
+                const nextSection = currentSection.nextElementSibling;
+                
+                if (nextSection) {
+                    nextSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

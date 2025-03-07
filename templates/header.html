@@ -1,0 +1,85 @@
+<!-- Create this as header.html in your templates directory -->
+<nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="text-blue-900 font-bold text-xl">Cricket Skills Academy</a>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="/" class="{% if request.path == '/' %}border-blue-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-blue-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Home
+                    </a>
+                    <a href="/blog" class="{% if request.path == '/blog' %}border-blue-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-blue-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Blog
+                    </a>
+                    <a href="/about" class="{% if request.path == '/about' %}border-blue-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-blue-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        About
+                    </a>
+                    <a href="/careers" class="{% if request.path == '/careers' %}border-blue-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-blue-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Careers
+                    </a>
+                    <a href="/community" class="{% if request.path == '/community' %}border-blue-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-blue-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        Community
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="sm:hidden flex items-center">
+                <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                    <span class="sr-only">Open main menu</span>
+                    <i data-feather="menu" id="menu-icon" class="block h-6 w-6"></i>
+                    <i data-feather="x" id="close-icon" class="hidden h-6 w-6"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state -->
+    <div class="sm:hidden hidden" id="mobile-menu">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="/" class="{% if request.path == '/' %}bg-blue-50 border-blue-500 text-blue-700{% else %}border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700{% endif %} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                Home
+            </a>
+            <a href="/blog" class="{% if request.path == '/blog' %}bg-blue-50 border-blue-500 text-blue-700{% else %}border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700{% endif %} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                Blog
+            </a>
+            <a href="/about" class="{% if request.path == '/about' %}bg-blue-50 border-blue-500 text-blue-700{% else %}border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700{% endif %} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                About
+            </a>
+            <a href="/careers" class="{% if request.path == '/careers' %}bg-blue-50 border-blue-500 text-blue-700{% else %}border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700{% endif %} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                Careers
+            </a>
+            <a href="/community" class="{% if request.path == '/community' %}bg-blue-50 border-blue-500 text-blue-700{% else %}border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700{% endif %} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                Community
+            </a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+        }
+        
+        // Initialize AlpineJS for dropdown functionality
+        if (typeof Alpine === 'undefined') {
+            // Add Alpine.js if not already loaded
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+    });
+</script>

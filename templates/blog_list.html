@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Cricket Skills Academy - Blog{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <div class="bg-blue-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                    Cricket Skills Blog
+                </h1>
+                <p class="mt-6 text-xl text-blue-100 max-w-2xl mx-auto">
+                    Insights, tips, and resources for cricket enthusiasts and professionals
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for blog in blogs %}
+            <div class="blog-card bg-white rounded-lg shadow-md overflow-hidden">
+                <a href="{{ url_for('blog_detail', slug=blog.slug) }}" class="block">
+                    {% if blog.image_url %}
+                    <div class="h-48 overflow-hidden">
+                        <img src="{{ blog.image_url }}" alt="{{ blog.title }}" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                    {% else %}
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                        <i data-feather="book-open" class="text-blue-800" style="width: 48px; height: 48px;"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="text-sm text-gray-500 flex items-center gap-1">
+                                <i data-feather="eye" class="w-4 h-4"></i>
+                                {{ blog.views }} views
+                            </div>
+                            <span class="text-sm text-gray-400">•</span>
+                            <div class="text-sm text-gray-500">
+                                {{ blog.published_date.strftime('%b %d, %Y') }}
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">{{ blog.title }}</h3>
+                        
+                        <p class="text-gray-600 mb-4 line-clamp-3">
+                            {{ blog.description }}
+                        </p>
+                        
+                        <div class="flex items-center gap-2">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                <span class="text-blue-800 font-medium">{{ blog.author[:1] }}</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">{{ blog.author }}</p>
+                                <p class="text-sm text-gray-500">Author</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if not blogs %}
+        <div class="text-center py-12">
+            <i data-feather="book-open" class="mx-auto mb-4 text-gray-400" style="width: 48px; height: 48px;"></i>
+            <h3 class="text-xl font-medium text-gray-900 mb-2">No blog posts yet</h3>
+            <p class="text-gray-600">Check back soon for new content!</p>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
